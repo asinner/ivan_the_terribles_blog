@@ -13,7 +13,7 @@
 				  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</div>
 
-				<%= post.comments.each do |comment| %>
+				<% post.comments.each do |comment| %>
 				
 					<div class="comment">
 					  <h3>Comment <%= comment.id %>:</h3>
