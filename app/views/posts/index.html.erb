@@ -2,7 +2,7 @@
 
 
 	<% @posts.each do |post| %>
-		<%= cache ['v30', post] do %>
+		<%= cache ['v33', post] do %>
 		  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
 		  <div class="post" data-msg='<%= post.body %>'>
 				<%= truncate(post.body, length: 160) %>
