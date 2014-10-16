@@ -1,8 +1,9 @@
+<% cache do %>
+
 <h1>Ivan the Terrible's Blog</h1>
 
 <section class="blog">
 	<% @posts.each do |post| %>
-		<% cache ['V1', post] do %>
 			<section class="post">
 			  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
 			  <div class="post"><%= post.body %></div>
@@ -29,10 +30,12 @@
 				<% end %>
 				
 			</section>
-		<% end %>
+			
 	<% end %>
 </section>
 
 <br />
 
 <%= link_to 'New Post', new_post_path %>
+
+<% end %>
