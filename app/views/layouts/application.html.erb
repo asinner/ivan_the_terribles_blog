@@ -8,8 +8,15 @@
 			var msg = p.getAttribute('data-msg')
 			p.innerHTML = msg;
 		}
+		function showComments(e) {
+			e.parentNode.getElementsByClassName('hidden')[0].className = '';
+		}
 	</script>
-
+	<style>
+		.hidden {
+			display: none;
+		}
+	</style>
 	<%= csrf_meta_tags %>
 </head>
 <body>

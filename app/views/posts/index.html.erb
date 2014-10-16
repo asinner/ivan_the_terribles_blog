@@ -1,32 +1,40 @@
-<% cache 'v19' do %>
 <h1>Ivan the Terrible's Blog</h1>
-<% @posts.each do |post| %>
-  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
-  <div class="post" data-msg='<%= post.body %>'>
-		<%= truncate(post.body, length: 160) %>
-		<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
-	</div>
-  <%= link_to 'Show', post %> |
-  <%= link_to 'Edit', edit_post_path(post) %> |
-  <%= link_to 'Destroy', post, method: :delete %><br>
 
-	<% post.comments.each do |comment| %>
-	  <h3>Comment <%= comment.id %>:</h3>
-	  <p data-msg='<%= comment.body %>'>
-			<%= truncate(comment.body, length: 160) %>
-			<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
-		</p>
-		<% comment.replies.each do |reply| %>
-			<h4>Reply <%= reply.id %>:</h4>
-			<p data-msg='<%= reply.body %>'>
-				<%= truncate(reply.body, length: 160) %>
+
+	<% @posts.each do |post| %>
+		<%= cache ['v30', post] do %>
+		  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
+		  <div class="post" data-msg='<%= post.body %>'>
+				<%= truncate(post.body, length: 160) %>
 				<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
-			</p>
-		<% end %>				
+			</div>
+		  <%= link_to 'Show', post %> |
+		  <%= link_to 'Edit', edit_post_path(post) %> |
+		  <%= link_to 'Destroy', post, method: :delete %><br>
+		
+			<%= link_to 'Show comments', '#', onclick: 'showComments(this)' %>
+			<div class='hidden'>
+				<% post.comments.each do |comment| %>
+				  <h3>Comment <%= comment.id %>:</h3>
+				  <p data-msg='<%= comment.body %>'>
+						<%= truncate(comment.body, length: 160) %>
+						<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
+					</p>
+					<% comment.replies.each do |reply| %>
+						<h4>Reply <%= reply.id %>:</h4>
+						<p data-msg='<%= reply.body %>'>
+							<%= truncate(reply.body, length: 160) %>
+							<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
+						</p>
+					<% end %>				
+				<% end %>
+			</div>
+		<% end %>
+		<br />
 	<% end %>
-<% end %>
-<br />
+	
+	<%= link_to 'New Post', new_post_path %> <br>
 
-<%= link_to 'New Post', new_post_path %>
 
-<% end %>
+<%= link_to_next_page @posts, 'Next Page' %>
+<%= link_to_previous_page @posts, 'Previous Page' %>
