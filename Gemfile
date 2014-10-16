@@ -6,6 +6,7 @@ gem 'rails', '~> 3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,6 +38,10 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # To use ActiveModel has_secure_password
