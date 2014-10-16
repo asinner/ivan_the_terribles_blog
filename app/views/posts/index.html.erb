@@ -1,4 +1,4 @@
-<% cache do %>
+<% cache 'v9' do %>
 
 <h1>Ivan the Terrible's Blog</h1>
 
@@ -6,7 +6,10 @@
 	<% @posts.each do |post| %>
 			<section class="post">
 			  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
-			  <div class="post"><%= post.body %></div>
+			  <div class="post" data-msg='<%= post.body %>'>
+					<%= truncate(post.body, length: 160) %>
+					<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
+				</div>
 				<div class="post_nav">
 				  <%= link_to 'Show', post %> |
 				  <%= link_to 'Edit', edit_post_path(post) %> |
@@ -17,11 +20,17 @@
 				
 					<div class="comment">
 					  <h3>Comment <%= comment.id %>:</h3>
-					  <p><%= comment.body %></p>
+					  <p data-msg='<%= comment.body %>'>
+							<%= truncate(comment.body, length: 160) %>
+							<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
+						</p>
 					  <div class="reply">
 							<% comment.replies.each do |reply| %>
 								<h4>Reply <%= reply.id %>:</h4>
-								<p><%= reply.body %></p>
+								<p data-msg='<%= reply.body %>'>
+									<%= truncate(reply.body, length: 160) %>
+									<%= link_to 'More ›', '#', onclick: 'reveal(this);' %>
+								</p>
 							<% end %>
 					  </div>
 					</div>
