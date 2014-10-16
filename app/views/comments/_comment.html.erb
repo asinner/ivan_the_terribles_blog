@@ -2,6 +2,8 @@
   <h3>Comment <%= comment.id %>:</h3>
   <p><%= comment.body %></p>
   <div class="reply">
-
+		<% comment.replies.each do |reply| %>
+			<%= render reply %>
+		<% end %>
   </div>
 </div>
