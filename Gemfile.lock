@@ -43,6 +43,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    daemon_controller (1.2.0)
     dalli (2.7.2)
     debug_inspector (0.0.2)
     diff-lcs (1.2.4)
@@ -66,6 +67,10 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.4)
     newrelic_rpm (3.9.5.251)
+    passenger (4.0.53)
+      daemon_controller (>= 1.2.0)
+      rack
+      rake (>= 0.8.1)
     pg (0.15.1)
     polyglot (0.3.4)
     pry (0.9.12.2)
@@ -154,6 +159,7 @@ DEPENDENCIES
   hirb
   jquery-rails
   newrelic_rpm
+  passenger
   pg
   pry-doc
   pry-rails
