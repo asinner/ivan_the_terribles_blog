@@ -3,3 +3,6 @@ http://loadimpact.com/load-test/still-garden-2396.herokuapp.com-921f5dec004d0e70
 Total Objects on page: 5,100
 Total Load Impact requests: 251
 Avg. load time: (14.20 + 2.01) / 2 = 8.201
+
+<img src='https://dl.dropbox.com/s/fhuc8pu578xw67n/Screenshot%202014-10-16%2009.28.12.png?dl=0'>
+<img src='https://dl.dropbox.com/s/u7anraf7n4bfd85/Screenshot%202014-10-16%2009.28.21.png?dl=0'>
