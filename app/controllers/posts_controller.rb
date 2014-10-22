@@ -3,7 +3,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+<<<<<<< HEAD
     render 'public/cache'
+=======
+    @posts = Post.where(published: params[:status] == 'published')
+      .search(params[:search])
+      .page(params[:page])
+      .per(15)
+    logger.info("Params search is #{params[:search]}")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+>>>>>>> ae5bf3fbe2342b8c49990ad57974694ec94e3c77
   end
 
   # GET /posts/1

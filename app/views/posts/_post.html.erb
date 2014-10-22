@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% cache post do %>
 	<section class="post">
 	  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
@@ -12,3 +13,11 @@
 		
 	</section>
 <% end %>
+=======
+<%= content_tag :section, class: "post #{post.publish_status}" do %>
+  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
+  <div class="post"><%= post.body %></div>
+  <%= render 'post_nav', post: post %>
+  <%#= render post.comments %>
+<% end %>
+>>>>>>> ae5bf3fbe2342b8c49990ad57974694ec94e3c77
