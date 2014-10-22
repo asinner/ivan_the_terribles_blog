@@ -2,7 +2,6 @@
 
 
 	<% @posts.each do |post| %>
-		<%= cache ['v33', post] do %>
 		  <h2>Post <%= "#{post.id}: #{post.title}" %></h2>
 		  <div class="post" data-msg='<%= post.body %>'>
 				<%= truncate(post.body, length: 160) %>
@@ -29,12 +28,7 @@
 					<% end %>				
 				<% end %>
 			</div>
-		<% end %>
 		<br />
 	<% end %>
 	
 	<%= link_to 'New Post', new_post_path %><br>
-
-
-<%= link_to_next_page @posts, 'Next Page' %>
-<%= link_to_previous_page @posts, 'Previous Page' %>

@@ -1,13 +1,9 @@
 class PostsController < ApplicationController
+  layout false
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(comments: :replies).page(params[:page]).per(25)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+    render 'public/cache'
   end
 
   # GET /posts/1
