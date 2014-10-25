@@ -3,19 +3,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-<<<<<<< HEAD
-    render 'public/cache'
-=======
-    @posts = Post.where(published: params[:status] == 'published')
+    published = (params[:status] == 'published')
+    @posts = Post.where(published: published)
       .search(params[:search])
-      .page(params[:page])
-      .per(15)
     logger.info("Params search is #{params[:search]}")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
     end
->>>>>>> ae5bf3fbe2342b8c49990ad57974694ec94e3c77
   end
 
   # GET /posts/1
@@ -48,7 +43,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -67,7 +62,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.update_attributes(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -87,5 +82,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
