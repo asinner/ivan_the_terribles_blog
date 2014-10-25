@@ -27,3 +27,14 @@ SQL Injection:
 ```
 foo%'); INSERT INTO posts (id,title,body,created_at,updated_at) VALUES (99,'hacked','hacked alright','2013-07-18','2013-07-18'); SELECT "posts".* FROM "posts" WHERE (title like 'hacked%
 ```
+
+# XSS Fix
+Simply escape any user generate output using html_safe(content) or sanitize(content). I used the shorthand "<%= h content %>"
+
+# SQL Injection
+Simply adjust the query so that is parameterized. Use parameters to prevent injection:
+```ruby
+Post.where("name like %#{search}%") # => Bad
+
+Post.where("name like ?", "%#{search}%") # => Good
+````
